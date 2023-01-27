@@ -1,0 +1,55 @@
+{% from "macros/fields.html" import render_text_field %}
+
+{% extends "layout.html" %}
+
+
+{%- block head_content %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sms.css') }}" />
+{% endblock %}
+
+
+{% block main_content %}
+
+
+
+<section class="content">
+<h1>Scheduled Messages</h1>
+
+{% if scheduled_data %}
+
+    <table class="table">
+        <colgroup>
+            <col style="width: 20%">
+            <col style="width: 65%">
+            <col style="width: 15%">
+        </colgroup>
+        <thead>
+            <tr class="table__header">
+                <th class="table__cell table__cell--header">Type</th>
+                <th class="table__cell table__cell--header">Date</th>
+                <th class="table__cell table__cell--header"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for schedule in scheduled_data %}
+                <tr>
+                    <td class="table__cell">
+                        
+                        <p class="table__notificationTitle">{{ schedule.project }}</p>
+                        <p class="table__notificationTitle">{{ schedule.nors }}</p>
+                      
+                    </td>
+                    <td class="table__cell">{{ schedule.date }}</td>
+                    <td class="table__cell"><a href="{{ url_for('pages.schedule_delete',_id=schedule._id) }}" class="table__link">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p class="table__empty">You haven't added any text messages yet. <a href="{{ url_for('pages.add_notification') }}" class="link">Add one!</a></p>
+{% endif %}
+
+
+ 
+{% endblock %}
+</section>

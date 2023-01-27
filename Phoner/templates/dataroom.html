@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+{% block head_content %}
+<link rel='stylesheet' href="{{ url_for('static', filename='css/index.css') }}" />
+
+{% endblock %}
+
+{% block main_content %}
+
+
+<section class='body'>
+    <h1 class='headline'> Phoner Data Room</h1>
+<div>
+    <canvas id='myChart'></canvas>
+  </div>
+  
+  <script src='https://cdn.jsdelivr.net/npm/chart.js'></script>
+  
+  <script>
+    const ctx = document.getElementById('myChart');
+  
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: {{data | safe}},
+        datasets: [{
+          label: '# of Messages Sent',
+          data: {{data | safe}},
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+  
+
+
+
+
+
+    <section class='control'>
+        <a href='{{ url_for("pages.scheduled_messages") }}' class='button button--control'>
+            <span>See All Scheduled Messages</span>
+        </a>
+        
+        
+        </section>
+
+
+
+</section>
+    {% endblock %}

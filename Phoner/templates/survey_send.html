@@ -1,0 +1,38 @@
+{% from "macros/fields.html" import render_text_field, render_area_field, render_select_field %}
+
+{% extends "layout.html" %}
+
+{%- block head_content %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}" />
+{% endblock %}
+
+{% block main_content %}
+
+<form method="POST" action="{{ url_for('pages.send_survey') }}">
+<select name="project" method="POST" action="/">
+    {% for project in projects %}
+        <option name="project"  value="{{project}}" SELECTED>{{project}}</option>"
+    {% endfor %}
+</select>
+
+<select name="survey" method="POST" action="/">
+    {% for survey in surveys %}
+        <option  name="survey" value="{{survey._id}}" SELECTED>{{survey.title}}</option>"
+    {% endfor %}
+</select>
+
+<input type="submit" value="Submit">
+</form> 
+
+
+
+
+
+{% endblock %}
+
+<!--
+<form method="POST" action="/">
+    {{ form.csrf_token }}
+    {{ form.name.label }} {{ form.name(size=20) }}
+    <input type="submit" value="Go">
+</form>-->

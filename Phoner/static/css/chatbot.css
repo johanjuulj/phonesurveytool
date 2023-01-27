@@ -1,0 +1,4 @@
+.body__chatbot{
+  display: grid;
+  grid-column: 1/3;
+}

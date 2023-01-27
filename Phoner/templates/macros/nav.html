@@ -1,0 +1,87 @@
+{% from "macros/svgs.html" import moon, sun %}
+
+
+{%macro header(email, theme) %}
+
+<header class="header"> 
+    <div class="nav-container">
+        <a href="{{url_for('pages.index')}}" class="header__logo">
+            <svg class="logo__icon" height="100" width="100">
+                <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
+                Sorry, your browser does not support inline SVG.  
+              </svg>
+            <span class="logo__name"> Phoner</span>
+        </a>
+    
+
+    <nav class="nav">
+        {% if not email %}
+        <a
+        href="{{ url_for('pages.login') }}"
+        class="nav__link {{ 'nav__link--active' if request.path == url_for('pages.login') }}"
+        >
+        <span class="nav__item">Log in</span>
+    </a>
+    <a
+        href="{{ url_for('pages.register') }}"
+        class="nav__link {{ 'nav__link--active' if request.path == url_for('pages.register') }}"
+    
+    >
+        <span class="nav__item">Register</span>
+    </a>
+        {% else %}
+        <a 
+        href="{{ url_for('pages.dataroom') }}"
+        class="nav__link {{ 'nav__link--active' if request.path == url_for('pages.dataroom') }}"
+    >
+        <span class="nav__item">Data Room</span>
+    </a>
+    <a 
+    href="{{ url_for('pages.chatbot') }}"
+    class="nav__link {{ 'nav__link--active' if request.path == url_for('pages.chatbot') }}"
+>
+    <span class="nav__item">Chatbot Settings</span>
+</a>
+<a 
+        href="{{ url_for('pages.survey') }}"
+        class="nav__link {{ 'nav__link--active' if request.path == url_for('pages.survey') }}"
+    >
+        <span class="nav__item">Survey Center</span>
+    </a>
+        
+        
+        
+        
+        <a 
+        href="{{ url_for('pages.notification') }}"
+        class="nav__link {{ 'nav__link--active' if request.path == url_for('pages.index') }}"
+    >
+        <span class="nav__item">Notification Center</span>
+    </a>
+    <a
+        href="{{ url_for('pages.logout') }}"
+        class="nav__link"
+    >
+        <span class="nav__item">Log out</span>
+    </a>
+        {% endif %}
+
+        <a
+        href="{{ url_for('pages.toggle_theme', current_page=request.path) }}"
+        class="nav__link"
+    >
+        <span class="nav__item">
+            {% if theme == "dark" %}
+                {{ sun("nav__icon") }}
+            {% else %}
+                {{ moon("nav__icon") }}
+            {% endif %}
+        </span>
+    </a>
+    
+
+    </nav>
+</div>
+</header>
+
+{% endmacro %}

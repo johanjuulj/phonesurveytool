@@ -1,0 +1,35 @@
+{% if sms_data %}
+
+    <table class="table">
+        <colgroup>
+            <col style="width: 20%">
+            <col style="width: 65%">
+            <col style="width: 15%">
+        </colgroup>
+        <thead>
+            <tr class="table__header">
+                <th class="table__cell table__cell--header">Title</th>
+                <th class="table__cell table__cell--header">Content</th>
+                <th class="table__cell table__cell--header"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for notification in notification_data %}
+                <tr>
+                    <td class="table__cell">
+                        <p class="table__notificationTitle">{{ notification.title }}</p>
+                      
+                    </td>
+                    <td class="table__cell">{{ notification.content }}</td>
+                    <td class="table__cell"><a href="#" class="table__link">View</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p class="table__empty">You haven't added any text messages yet. <a href="{{ url_for('pages.add_notification') }}" class="link">Add one!</a></p>
+{% endif %}
+
+<a href="{{ url_for('pages.add_notification') }}" class="button button--add">
+    <span>+</span>
+</a>

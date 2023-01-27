@@ -1,0 +1,61 @@
+{% from "macros/svgs.html" import star, pencil %}
+
+{% extends "layout.html" %}
+
+{%- block head_content %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/details.css') }}" />
+{% endblock %}
+
+{% block main_content %}
+<div class="container">
+    <header class="message__header">
+        <div class="header__row">
+            <div class="movie__name">
+                <h1>{{ notification.title }}</h1>
+                <div class="message__rating">
+                    <p>Importance Of Message (1-5)</p>
+                    {%for i in range(5)%}
+
+                        
+                        <a class="rating__link" href="{{ url_for('pages.notification_rate', _id=notification._id, rating=i+1) }}">
+                            {{ star("star " + ("star--filled" if notification.ratingImportance > i else ""))}}
+                        </a>
+                       
+                    {%endfor%}
+                </div>
+            </div>
+            <div class="message__dateSent">
+                {% if notification.dateSent %}
+                    <p>
+                        Last watched: <a href="#" class="sent__link">
+                            <time datetime="{{ message.dateSent }}">{{notification.dateSent.strftime("%d %b %Y")}}</time>
+                        </a>
+                    </p>
+                {% else %}
+                    <p><a href="#" class="sent__link">Not sent yet</a></p>
+                {% endif %}
+                <a class="message__edit" href="{{ url_for('pages.notification_edit', _id=notification._id)}}">Edit {{ pencil("pencil") }}</a>
+
+                <a class="message__delete" href="{{ url_for('pages.notification_delete', _id=notification._id)}}">#Delete Button(insert verification)</a>
+            </div>
+        </div>
+        <div class="header__row">
+            <ul class="message__tags">
+            {% for tag in notification.tags %}
+                <li class="message__tag">{{ tag }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+<div class="message__content">
+        {{ notification.content }}
+    </div>
+
+    <div class="message__comments">
+
+        {{ notification.status }}
+        {{ notification.comment }}
+
+    </div>
+    </header>
+</div>
+{% endblock %}

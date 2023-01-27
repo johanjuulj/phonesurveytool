@@ -1,0 +1,66 @@
+{% from "macros/svgs.html" import star, pencil %}
+
+{% extends "layout.html" %}
+
+{%- block head_content %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/details.css') }}" />
+{% endblock %}
+
+{% block main_content %}
+<div class="container">
+    <header class="message__header">
+        <div class="header__row">
+            <div class="movie__name">
+                <h1>{{ survey.title }}</h1>
+                <h4><i>{{survey.content}}</i></h4>
+            </div>
+            <div class="message__dateSent">
+                
+                <a class="message__edit" href="{{ url_for('pages.survey_edit', _id=survey._id)}}">Edit {{ pencil("pencil") }}</a>
+
+                <a class="message__delete" href="{{ url_for('pages.survey_delete', _id=survey._id)}}">#Delete Button(insert verification)</a>
+            </div>
+        </div>
+        <div class="">
+           <h2>Question's In Survey</h2>
+        </div>
+
+        {% if survey_questions %}
+
+                <table class="table">
+                    <colgroup>
+                        <col style="width: 20%">
+                        <col style="width: 65%">
+                        <col style="width: 15%">
+                    </colgroup>
+                    <thead>
+                        <tr class="table__header">
+                            <th class="table__cell table__cell--header">Title</th>
+                            <th class="table__cell table__cell--header">Content</th>
+                            <th class="table__cell table__cell--header"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for question in survey_questions %}
+                        <tr>
+                            <td class="table__cell">
+                                <p class="table__notificationTitle">{{ question.title }}</p>
+
+                            </td>
+                            <td class="table__cell">{{ question.content }}</td>
+                            <td class="table__cell"><a href="{{ url_for('pages.survey_question_remove',_id=survey._id,q_id=question._id) }}" class="table__link">Remove</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    
+                </table>
+                {% else %}
+
+                {% endif %}
+                <p class="table__empty"> <a href="{{ url_for('pages.survey_question_add', _id=survey._id) }}"
+                    class="link">Add a question!</a></p>
+
+ 
+    </header>
+</div>
+{% endblock %}

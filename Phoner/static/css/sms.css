@@ -1,0 +1,126 @@
+.content{
+max-width: 50rem;
+width: 100%;
+margin: 0 auto;
+border-spacing: 0;
+}
+.control{
+  display: flex;
+  border: 20px;
+  
+}
+.button--add {
+    position: absolute; 
+    bottom: 4rem;
+    right: 2rem;
+    display: flex;
+    height: 5rem;
+    width: 5rem;
+    border: var(--border);
+    border-radius: 50%;
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.75rem;
+    align-items: center;
+    justify-content: center;
+  }
+  .button--add1 {
+    
+    bottom: 4rem;
+    right: 2rem;
+    display: flex;
+    height: 5rem;
+    width: 5rem;
+    border: var(--border);
+    border-radius: 50%;
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.75rem;
+    align-items: center;
+    justify-content: center;
+  }  
+  .button--control {
+    
+   
+    display: flex;
+    height: 5rem;
+    width: 10rem;
+    border: var(--border);
+    
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 60;
+    font-size: 1.2rem;
+    align-items: center;
+    justify-content: center;
+    margin:10px; /* remove this, this is only for the control section to move the buttons apart*/
+    
+  }  
+
+  
+  @media screen and (min-width: 50em) {
+    .button--add {
+      right: 3rem;
+    }
+  }
+  
+  @media screen and (min-width: 80em) {
+    .button--add {
+      right: 4rem;
+    }
+  }
+  
+  .button--add:hover {
+    color: var(--text);
+    background-color: var(--accent-colour);
+  }
+  .button--add1:hover {
+    color: var(--text);
+    background-color: var(--accent-colour);
+  }
+
+  
+  .table {
+    max-width: 50rem;
+    width: 100%;
+    margin: 0 auto;
+    border-spacing: 0;
+  }
+  
+
+  .table__cell {
+    padding: 1.25rem 1rem;
+  }
+
+  .table__cell--header {
+    text-align: left;
+    padding: 0.5rem 1rem;
+    border-bottom: var(--border);
+  }
+
+  .table__smsTitle {
+    font-weight: 600;
+  }
+  
+  .table__smsContent {
+    font-size: 0.85em;
+  }
+  
+  .table__link {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  .table__link:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--accent-colour);
+  }
+
+  .table__empty {
+    display: block;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+  

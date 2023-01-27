@@ -1,0 +1,46 @@
+{% from "macros/fields.html" import render_text_field, render_area_field, render_select_field %}
+
+{% extends "layout.html" %}
+
+{%- block head_content %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}" />
+{% endblock %}
+
+{% block main_content %}
+
+<h1>Schedule Surveys</h1>
+<form action="{{ url_for('pages.schedule') }}" method="POST">
+    <label for="">Select a project:</label>
+    <select name="project" method="POST" action="/">
+        {% for project in projects %}
+            <option value="{{project}}" SELECTED>{{project}}</option>"
+        {% endfor %}
+    </select>
+    <label for="">Select a Survey:</label>
+    <select name="messageTitle" method="POST" action="/">
+        {% for survey in surveys %}
+            <option value="{{survey.title}}" SELECTED>{{survey.title}}</option>"
+        {% endfor %}
+    </select>
+   <!--
+    <label for="">When time:</label>
+    <input type="time" id="time" name="time"  method="POST">-->
+
+    <label for="">When date:</label>
+    <input type="date" id="date" name="date"  method="POST">
+    
+    <input  id="nors" name="nors" value="survey" method="POST" hidden>
+
+
+    <input type="submit" value="Submit">
+    </form> 
+
+
+{% endblock %}
+
+<!--
+<form method="POST" action="/">
+    {{ form.csrf_token }}
+    {{ form.name.label }} {{ form.name(size=20) }}
+    <input type="submit" value="Go">
+</form>-->

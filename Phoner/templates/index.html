@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block head_content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" />
+{% endblock %}
+
+{% block main_content %}
+
+<section class="body">
+    <h1 class="headline"> Phoner Marketing</h1>
+
+
+
+
+{% if session['email'] %}
+
+   <b>Please add graphs displaying marketing campaign status</b>
+{% else %}
+    <p class="table__empty">You haven't logged in so there is no data to display.  <a href="{{ url_for('pages.register') }}" class="link">Login or create an account to get started!</a></p>
+{% endif %}
+
+</section>
+    {% endblock %}
