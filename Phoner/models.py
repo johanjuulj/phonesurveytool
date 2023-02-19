@@ -66,7 +66,6 @@ class ScheduledMessage:
 class SentMessage:
     _id: str
     project: str
-    nors: str
     date: datetime
-    response : str
+    response : object
     

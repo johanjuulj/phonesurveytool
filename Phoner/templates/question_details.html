@@ -16,9 +16,9 @@
             </div>
             <div class="message__dateSent">
                
-                <a class="message__edit" href="{{ url_for('pages.question_edit', _id=question._id)}}">Edit {{ pencil("pencil") }}</a>
+                <a class="message__edit" href="{{ url_for('survey.question_edit', _id=question._id)}}">Edit {{ pencil("pencil") }}</a>
 
-                <a class="message__delete" href="{{ url_for('pages.question_delete', _id=question._id)}}">#Delete Button(insert verification)</a>
+                <a class="message__delete" href="{{ url_for('survey.question_delete', _id=question._id)}}">#Delete Button(insert verification)</a>
             </div>
         </div>
         

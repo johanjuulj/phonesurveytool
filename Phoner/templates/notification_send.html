@@ -8,7 +8,9 @@
 
 {% block main_content %}
 
-<form method="POST" action="{{ url_for('pages.send_notification') }}">
+<form method="POST" action="{{ url_for('notification.send_notification') }}">
+
+    
 <select name="project" method="POST" action="/">
     {% for project in projects %}
         <option name="project" value="{{project}}" SELECTED>{{project}}</option>"

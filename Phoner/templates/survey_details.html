@@ -16,9 +16,9 @@
             </div>
             <div class="message__dateSent">
                 
-                <a class="message__edit" href="{{ url_for('pages.survey_edit', _id=survey._id)}}">Edit {{ pencil("pencil") }}</a>
+                <a class="message__edit" href="{{ url_for('survey.edit', _id=survey._id)}}">Edit {{ pencil("pencil") }}</a>
 
-                <a class="message__delete" href="{{ url_for('pages.survey_delete', _id=survey._id)}}">#Delete Button(insert verification)</a>
+                <a class="message__delete" href="{{ url_for('survey.delete', _id=survey._id)}}">#Delete Button(insert verification)</a>
             </div>
         </div>
         <div class="">
@@ -48,7 +48,7 @@
 
                             </td>
                             <td class="table__cell">{{ question.content }}</td>
-                            <td class="table__cell"><a href="{{ url_for('pages.survey_question_remove',_id=survey._id,q_id=question._id) }}" class="table__link">Remove</a></td>
+                            <td class="table__cell"><a href="{{ url_for('survey.survey_question_remove',_id=survey._id,q_id=question._id) }}" class="table__link">Remove</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -57,8 +57,8 @@
                 {% else %}
 
                 {% endif %}
-                <p class="table__empty"> <a href="{{ url_for('pages.survey_question_add', _id=survey._id) }}"
-                    class="link">Add a question!</a></p>
+                <p class="table__empty"> <a href="{{ url_for('survey.question_add_to_survey', _id=survey._id) }}"
+                    class="link" "> Add a question!</a></p>
 
  
     </header>

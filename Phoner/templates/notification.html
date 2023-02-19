@@ -13,12 +13,18 @@
 
 
 <section class="content">
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {%- for category, message in messages %}
+        <span class="form__flash form__flash--{{category}}"> {{ message }}</span>
+    {% endfor %}
+{% endwith %}
 <h1>Notifications</h1>
 <section class="control">
-<a href="{{ url_for('pages.notification_send') }}" class="button button--control">
+<a href="{{ url_for('notification.notification_send') }}" class="button button--control">
     <span>Send Notifications</span>
 </a>
-<a href="{{ url_for('pages.notification_schedule') }}" class="button button--control">
+<a href="{{ url_for('notification.notification_schedule') }}" class="button button--control">
     <span>Schedule Notifications</span>
 </a>
 
@@ -46,18 +52,19 @@
                       
                     </td>
                     <td class="table__cell">{{ notification.content }}</td>
-                    <td class="table__cell"><a href="{{ url_for('pages.notification_details',_id=notification._id) }}" class="table__link">View</a></td>
+                    <td class="table__cell"><a href="{{ url_for('notification.notification_details',_id=notification._id) }}" class="table__link">View</a></td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
 {% else %}
-    <p class="table__empty">You haven't added any text messages yet. <a href="{{ url_for('pages.add_notification') }}" class="link">Add one!</a></p>
+    <p class="table__empty">You haven't added any text messages yet. <a href="{{ url_for('notification.add') }}" class="link">Add one!</a></p>
 {% endif %}
 
-<a href="{{ url_for('pages.add_notification') }}" class="button button--add">
+<a href="{{ url_for('notification.add') }}" class="button button--add">
     <span>+</span>
 </a>
  
+
 {% endblock %}
 </section>

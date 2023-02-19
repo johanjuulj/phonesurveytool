@@ -10,10 +10,10 @@
     <h1 class="headline"> Phoner Survey and Question Platform</h1>
 
     <section class="control">
-        <a href="{{ url_for('pages.survey_send') }}" class="button button--control">
+        <a href="{{ url_for('survey.survey_send') }}" class="button button--control">
             <span>Send out Survey</span>
         </a>
-        <a href="{{ url_for('pages.survey_schedule') }}" class="button button--control">
+        <a href="{{ url_for('survey.schedule') }}" class="button button--control">
             <span>Schedule Surveys</span>
         </a>
         
@@ -47,19 +47,19 @@
 
                             </td>
                             <td class="table__cell">{{ survey.content }}</td>
-                            <td class="table__cell"><a href="{{ url_for('pages.survey_details',_id=survey._id) }}" class="table__link">View</a></td>
+                            <td class="table__cell"><a href="{{ url_for('survey.survey_details',_id=survey._id) }}" class="table__link">View</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>
                     
                 </table>
                 {% else %}
-                <p class="table__empty">You haven't added any survey's yet. <a href="{{ url_for('pages.survey_add') }}"
+                <p class="table__empty">You haven't added any survey's yet. <a href="{{ url_for('survey.add') }}"
                         class="link">Add one!</a></p>
                 {% endif %}
 
                 
-                <a href="{{ url_for('pages.survey_add') }}" class="button button--add1">
+                <a href="{{ url_for('survey.add') }}" class="button button--add1">
                     <span>+</span>
                 </a>
 
@@ -90,17 +90,17 @@
 
                             </td>
                             <td class="table__cell">{{ question.content }}</td>
-                            <td class="table__cell"><a href="{{ url_for('pages.question_details',_id=question._id) }}" class="table__link">View</a></td>
+                            <td class="table__cell"><a href="{{ url_for('survey.question_details',_id=question._id) }}" class="table__link">View</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
                 {% else %}
                 <p class="table__empty">You haven't added any question's yet. <a
-                        href="{{ url_for('pages.question_add') }}" class="link">Add one!</a></p>
+                        href="{{ url_for('survey.question_add') }}" class="link">Add one!</a></p>
                 {% endif %}
 
-                <a href="{{ url_for('pages.question_add') }}" class="button button--add">
+                <a href="{{ url_for('survey.question_create') }}" class="button button--add">
                     <span>+</span>
                 </a>
 

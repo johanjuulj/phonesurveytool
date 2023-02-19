@@ -27,9 +27,9 @@
         </tbody>
     </table>
 {% else %}
-    <p class="table__empty">You haven't added any text messages yet. <a href="{{ url_for('pages.add_notification') }}" class="link">Add one!</a></p>
+    <p class="table__empty">You haven't added any text messages yet. <a href="{{ url_for('notification.add') }}" class="link">Add one!</a></p>
 {% endif %}
 
-<a href="{{ url_for('pages.add_notification') }}" class="button button--add">
+<a href="{{ url_for('notification.add') }}" class="button button--add">
     <span>+</span>
 </a>

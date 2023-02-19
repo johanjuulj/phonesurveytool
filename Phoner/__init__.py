@@ -3,6 +3,8 @@ from flask import Flask
 from dotenv import load_dotenv
 from pymongo import MongoClient
 
+from Phoner.routes_survey import survey
+from Phoner.routes_notification import notification
 from Phoner.chatbot.routes import chatbot
 from Phoner.routes import pages
 
@@ -19,6 +21,8 @@ def create_app():
 
     app.register_blueprint(pages)
     app.register_blueprint(chatbot)
+    app.register_blueprint(notification)
+    app.register_blueprint(survey)
     return app
 
 

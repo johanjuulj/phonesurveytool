@@ -33,7 +33,7 @@
 
                 </td>
                 <td class="table__cell">{{ question.content }}</td>
-                <td class="table__cell"><a href="{{ url_for('pages.survey_question_addq', _id=survey._id, q_id=question._id) }}" class="table__link">Add</a></td>
+                <td class="table__cell"><a href="{{ url_for('survey.question_addq', _id=survey._id, q_id=question._id) }}"  class="table__link">Add</a></td>
             </tr>
             
             {% endif %}

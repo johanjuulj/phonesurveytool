@@ -17,7 +17,7 @@
                     {%for i in range(5)%}
 
                         
-                        <a class="rating__link" href="{{ url_for('pages.notification_rate', _id=notification._id, rating=i+1) }}">
+                        <a class="rating__link" href="{{ url_for('notification.notification_rate', _id=notification._id, rating=i+1) }}">
                             {{ star("star " + ("star--filled" if notification.ratingImportance > i else ""))}}
                         </a>
                        
@@ -34,9 +34,9 @@
                 {% else %}
                     <p><a href="#" class="sent__link">Not sent yet</a></p>
                 {% endif %}
-                <a class="message__edit" href="{{ url_for('pages.notification_edit', _id=notification._id)}}">Edit {{ pencil("pencil") }}</a>
+                <a class="message__edit" href="{{ url_for('notification.notification_edit', _id=notification._id)}}">Edit {{ pencil("pencil") }}</a>
 
-                <a class="message__delete" href="{{ url_for('pages.notification_delete', _id=notification._id)}}">#Delete Button(insert verification)</a>
+                <a class="message__delete" href="{{ url_for('notification.notification_delete', _id=notification._id)}}">#Delete Button(insert verification)</a>
             </div>
         </div>
         <div class="header__row">

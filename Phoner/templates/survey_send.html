@@ -8,7 +8,7 @@
 
 {% block main_content %}
 
-<form method="POST" action="{{ url_for('pages.send_survey') }}">
+<form method="POST" action="{{ url_for('survey.send') }}">
 <select name="project" method="POST" action="/">
     {% for project in projects %}
         <option name="project"  value="{{project}}" SELECTED>{{project}}</option>"
