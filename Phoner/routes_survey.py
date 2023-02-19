@@ -292,7 +292,6 @@ def question_edit(_id:str):
 
 
 @survey.route("/question/<string:_id>/delete", methods=["GET", "POST"])
-#require login
 def question_delete(_id):
 
     current_app.db.Questions.delete_one({"_id": _id})
