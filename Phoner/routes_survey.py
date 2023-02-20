@@ -41,7 +41,7 @@ def center():
 
 @survey.route("/send", methods=["GET", "POST"])
 def send():
-    project = request.form["project"]
+    #project = request.form["project"]
     survey_id = request.form["survey"]
     
     
