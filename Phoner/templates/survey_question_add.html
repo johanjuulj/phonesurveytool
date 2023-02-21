@@ -43,6 +43,8 @@
             
         </tbody>
     </table>
+    <br>
+    <button onclick="buttonClick(1)" class="btn btn-dark btn-block" id="button">click</button>
     {% else %}
     <p class="table__empty">You haven't added any question's yet. <a
             href="{{ url_for('pages.question_add') }}" class="link">Add one!</a></p>
@@ -53,5 +55,7 @@
 
 </td>
 
-
+<script type="text/javascript" src="{{url_for('static',filename='list.js')}}">
+    
+</script>
 {% endblock %}
