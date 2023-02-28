@@ -1,4 +1,3 @@
-#
 """ Module for setting up the app environment variables and registering the blueprints """
 import os
 from flask import Flask

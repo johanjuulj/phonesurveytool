@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import IntegerField, StringField, SubmitField, PasswordField, TextAreaField, SelectField
 from wtforms.validators import InputRequired, Email, Length, EqualTo
 
-class NotificationForm(FlaskForm): #creates a new class for SMS information, by passing in FlaskForm it inherits from the FlaskForm package. among other things it helps protect against Cross-site request forgery attacks CSRF
+class NotificationForm(FlaskForm):
     title = StringField("Title", validators=[InputRequired()])
     content = TextAreaField("Message Content", validators=[InputRequired()])
     submit = SubmitField("Add Notification")
@@ -12,12 +12,12 @@ class NotificationForm(FlaskForm): #creates a new class for SMS information, by 
 #     recipientProject = StringField("Recipient Project", validators=[InputRequired()])
 
 
-class QuestionForm(FlaskForm): #creates a new class for SMS information, by passing in FlaskForm it inherits from the FlaskForm package. among other things it helps protect against Cross-site request forgery attacks CSRF
+class QuestionForm(FlaskForm):
     title = StringField("Title", validators=[InputRequired()])
     content = StringField("Question Content", validators=[InputRequired()])
     submit = SubmitField("Add Question")
 
-class SurveyForm(FlaskForm): #creates a new class for SMS information, by passing in FlaskForm it inherits from the FlaskForm package. among other things it helps protect against Cross-site request forgery attacks CSRF
+class SurveyForm(FlaskForm):
     title = StringField("Title", validators=[InputRequired()])
     content = StringField("Survey Content", validators=[InputRequired()])
     submit = SubmitField("Add Survey")
