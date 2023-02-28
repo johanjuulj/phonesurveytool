@@ -46,26 +46,20 @@ class LoginForm(FlaskForm):
     submit = SubmitField("Login")
 
 
-
 #typically returns a string but this class changes the TextAreaField to become alist of strings
 class StringListField(TextAreaField):
     def _value(self):
         if self.data:
             return "\n".join(self.data)
-        else:
-            return ""
+        return ""
 
     def process_formdata(self, valuelist):
         if valuelist and valuelist[0]:
             self.data = [line.strip() for line in valuelist[0].split("\n")]
         else:
             self.data = []
-          
 
 class ExtendedNotificationForm(NotificationForm):
     comment = StringListField("Comments")
-    status = SelectField(u"Status", choices=["Draft", "Approved"])
-
+    status = SelectField("Status", choices=["Draft", "Approved"])
     submit = SubmitField("Submit")
-    
-
