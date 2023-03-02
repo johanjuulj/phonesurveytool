@@ -1,8 +1,7 @@
-
 {% extends "layout.html" %}
 
 {%- block head_content %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}" />
 {% endblock %}
 
 {% block main_content %}
@@ -33,29 +32,33 @@
 
                 </td>
                 <td class="table__cell">{{ question.content }}</td>
-                <td class="table__cell"><a href="{{ url_for('survey.question_addq', _id=survey._id, q_id=question._id) }}"  class="table__link">Add</a></td>
+                <td class="table__cell"><a
+                        href="{{ url_for('survey.question_addq', _id=survey._id, q_id=question._id) }}"
+                        class="table__link">Add</a></td>
             </tr>
-            
+
             {% endif %}
 
-            
+
             {% endfor %}
-            
+
         </tbody>
     </table>
     <br>
+
+    <input type="text" id="input">
     <button class="btn btn-dark btn-block" id="button">click</button>
     {% else %}
-    <p class="table__empty">You haven't added any question's yet. <a
-            href="{{ url_for('pages.question_add') }}" class="link">Add one!</a></p>
+    <p class="table__empty">You haven't added any question's yet. <a href="{{ url_for('pages.question_add') }}"
+            class="link">Add one!</a></p>
     {% endif %}
 
-  
+
 
 
 </td>
 
 <script type="text/javascript" src="{{url_for('static',filename='list.js')}}">
-    
+
 </script>
 {% endblock %}
