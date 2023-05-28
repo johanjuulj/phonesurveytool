@@ -68,7 +68,7 @@ def send():
     flash("Message sent!", "success")     
     return redirect(url_for(".center"))#render survey + buzz message sent
 
-@survey.route("/add", methods=["GET"])
+@survey.route("/add", methods=["GET", "POST"])
 def add():
     form = SurveyForm()
 
