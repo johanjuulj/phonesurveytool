@@ -23,3 +23,6 @@ The init file sets up the web application and loads all the configuartions and b
 The .flaskenv sets the name of the application and most importantly sets the debug value to true. IF or WHEN you launch for production this must be changed to false.
 
 You should create a .env file which contains the data needed to be loaded into the configuration in the init file above. The file should look like:
+
+file:///home/johan/Pictures/Screenshots/Screenshot%20from%202023-05-30%2009-47-57.png![Uploading image.png…]()
+
