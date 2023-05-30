@@ -1,0 +1,5 @@
+export SECRET_KEY="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+export MONGO_URI="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+export TWILIO_SID='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+export AUTH_TOKEN='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+export AUTH_TOKEN_backup='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
