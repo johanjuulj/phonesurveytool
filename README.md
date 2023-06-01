@@ -24,5 +24,5 @@ The .flaskenv sets the name of the application and most importantly sets the deb
 
 You should create a .env file which contains the data needed to be loaded into the configuration in the init file above. The file should look like:
 
-![alt text](https://github.com/johanjuulj/phonesurveytool/blob/main/Screenshot%20from%202023-05-30%2009-52-42.png
+![alt text](https://github.com/johanjuulj/phonesurveytool/blob/main/Screenshot%20from%202023-05-30%2009-52-42.png)
 
