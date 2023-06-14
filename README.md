@@ -32,6 +32,7 @@ Run the following command in your terminal to install everything with pip:
 ```
 pip install -r requirements.txt
 ```
+Note that the current version of tensorflow doesn't match with Python 3.11
 
 
 
