@@ -45,6 +45,15 @@ The static folder contains all the CSS for the web application and the minimal a
 __templates folder__
 The templates folder contiains all the "views"/pages displayed. Future work could entail making some of them more dynamic by adding some JS functionality.
 
+## Deployment
+First steps to deploy is to ensure you have updated the .env file as explained above and exected the installation of dependencies through pip is described above
+To deploy this project run
+
+```bash
+  run flask
+```
+
+
 
 
 
