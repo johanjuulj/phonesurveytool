@@ -5,9 +5,9 @@ Is an open source project enabling organizations collect data on projects utiliz
 ## Roadmap
 
 The project was developed as a part of a project at DTU and has been customized for a couple of organizations needing it for implementations with various development projects. There is no current development ongoing on the phonesurveytool but in the future I might work on customization features such as
-* -Account management
-* -Messaging authority
-* -Gateway customization (Twilio/Africa’sTalking and more)
+* Account management
+* Messaging authority
+* Gateway customization (Twilio/Africa’sTalking and more)
 For now several of these things are hardcoded.
 
 ## Documentation
