@@ -36,6 +36,14 @@ pip install -r requirements.txt
 Note that the current version of tensorflow doesn't match with Python 3.11
 
 
+__routes__
+The main directory containts all the routes for the webapplication divided into "routes" for main/misc routes, notification routes and survey routes. These are the three main categories of routes throughout the application.
+
+__static folder__
+The static folder contains all the CSS for the web application and the minimal amount of javascript code.
+
+__templates folder__
+The templates folder contiains all the "views"/pages displayed. Future work could entail making some of them more dynamic by adding some JS functionality.
 
 
 
@@ -45,4 +53,6 @@ Note that the current version of tensorflow doesn't match with Python 3.11
 
 
 
-Note: the chatbot functionality and corresponding folders/documents should be moved to another branch and should be ignorred for now. This includes data.pickle checkpoint model.tflearn++ and everything in the chatbot folder. 
+
+
+Note: the chatbot functionality and corresponding folders/documents should be moved to another branch and should be ignorred for now. This includes data.pickle checkpoint model.tflearn++ and everything in the chatbot & model folders. 
