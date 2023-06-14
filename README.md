@@ -50,7 +50,7 @@ First steps to deploy is to ensure you have updated the .env file as explained a
 To deploy this project run
 
 ```bash
-  run flask
+  flask run
 ```
 
 
