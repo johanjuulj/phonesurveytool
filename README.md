@@ -28,7 +28,7 @@ You should create a .env file which contains the data needed to be loaded into t
 ![alt text](https://github.com/johanjuulj/phonesurveytool/blob/main/Screenshot%20from%202023-05-30%2009-52-42.png)
 
 requirements.txt file contains all the dependencies that needs to be install prior to running the app.
-
+Run the following command in your terminal to install everything with pip:
 ```
 pip install -r requirements.txt
 ```
