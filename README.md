@@ -9,6 +9,7 @@ The project was developed as a part of a project at DTU and has been customized 
 * Messaging authority
 * Gateway customization (Twilio/Africa’sTalking and more)
 * Chatbot functionality - Adding simple chatbot funtionality for Q&A purposes to educate the user.
+* Proper unit test and integration test implementation
 For now several of these things are hardcoded.
 
 ## Documentation
