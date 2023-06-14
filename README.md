@@ -18,7 +18,7 @@ The web app is built on Python Flask and utilizes a Mongodb backend. Some experi
 
 ### Structure
 
-** Setup **
+__Setup__
 
 The init file sets up the web application and loads all the configuartions and blueprints. If you are to add more pages/section this is where they should be loaded
 
