@@ -8,6 +8,7 @@ The project was developed as a part of a project at DTU and has been customized 
 * Account management
 * Messaging authority
 * Gateway customization (Twilio/Africa’sTalking and more)
+* Chatbot functionality - Adding simple chatbot funtionality for Q&A purposes to educate the user.
 For now several of these things are hardcoded.
 
 ## Documentation
@@ -26,3 +27,16 @@ You should create a .env file which contains the data needed to be loaded into t
 
 ![alt text](https://github.com/johanjuulj/phonesurveytool/blob/main/Screenshot%20from%202023-05-30%2009-52-42.png)
 
+
+
+
+
+
+
+
+
+
+
+
+
+Note: the chatbot functionality and corresponding folders/documents should be moved to another branch and should be ignorred for now. This includes data.pickle checkpoint model.tflearn++ and everything in the chatbot folder. 
