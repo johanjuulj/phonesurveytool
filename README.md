@@ -49,6 +49,11 @@ The templates folder contiains all the "views"/pages displayed. Future work coul
 First steps to deploy is to ensure you have updated the .env file as explained above and exected the installation of dependencies through pip is described above
 To deploy this project run
 
+__Setup Twilio__
+First you need to create a Twilio account. For more information on account types check https://www.twilio.com/docs/messaging/build-your-account
+Or go straight to sign-up https://www.twilio.com/try-twilio
+
+
 ```bash
   flask run
 ```
