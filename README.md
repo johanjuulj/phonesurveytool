@@ -51,6 +51,7 @@ To deploy this project run
 
 __Setup Twilio__
 First you need to create a Twilio account. For more information on account types check https://www.twilio.com/docs/messaging/build-your-account
+
 Or go straight to sign-up https://www.twilio.com/try-twilio
 
 
