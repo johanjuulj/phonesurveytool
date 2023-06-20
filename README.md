@@ -70,4 +70,4 @@ Or go straight to sign-up https://www.twilio.com/try-twilio
 
 
 
-Note: the chatbot functionality and corresponding folders/documents should be moved to another branch and should be ignorred for now. This includes data.pickle checkpoint model.tflearn++ and everything in the chatbot & model folders. 
+Note: the chatbot functionality and corresponding folders/documents should be moved to another branch and should be ignorred for now. This includes data.pickle checkpoint model.tflearn+ and everything in the chatbot & model folders. 
