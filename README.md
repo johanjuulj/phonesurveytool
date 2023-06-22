@@ -24,7 +24,7 @@ The init file sets up the web application and loads all the configuartions and b
 
 The .flaskenv sets the name of the application and most importantly sets the debug value to true. IF or WHEN you launch for production this must be changed to false.
 
-You should create a .env file which contains the data needed to be loaded into the configuration in the init file above. The file should look like:
+You should create a .env file which contains the data needed to be loaded into the configuration in the init file above. Please input a unique secret key for security in the .env file the other input values are further explained below in the documentation. The file should look like:
 
 ![alt text](https://github.com/johanjuulj/phonesurveytool/blob/main/Screenshot%20from%202023-05-30%2009-52-42.png)
 
@@ -53,6 +53,14 @@ __Setup Twilio__
 First you need to create a Twilio account. For more information on account types check https://www.twilio.com/docs/messaging/build-your-account
 
 Or go straight to sign-up https://www.twilio.com/try-twilio
+
+In testing please go under "sandbox" and find the datapoints TWILIO_SID & AUTH_TOKEN these are to be inserted into the .env file prior to launching the web application.
+
+__Setup MongoDB__
+
+Setup and MongoDB account and connect it to your prefered cloud hosting service. For more indepth information see https://www.mongodb.com/free-cloud-database
+
+After completing the setup please find the MongoDB URI and insert it into the .env file.
 
 
 ```bash
