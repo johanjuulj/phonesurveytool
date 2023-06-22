@@ -68,10 +68,18 @@ pip install -r requirements.txt
 Note that the current version of tensorflow doesn't match with Python 3.11
 
 
-```bash
+### Launch Test Environment
+
+```
   flask run
 ```
 
+Your web application should now be working on your localhost
+
+
+### Launch Production Environment
+
+First decide on a cloud hosting solution to launch the web-application on. I suggest using the same as you are using to host your database.
 
 
 
