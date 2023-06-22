@@ -29,11 +29,8 @@ You should create a .env file which contains the data needed to be loaded into t
 ![alt text](https://github.com/johanjuulj/phonesurveytool/blob/main/Screenshot%20from%202023-05-30%2009-52-42.png)
 
 requirements.txt file contains all the dependencies that needs to be install prior to running the app.
-Run the following command in your terminal to install everything with pip:
-```
-pip install -r requirements.txt
-```
-Note that the current version of tensorflow doesn't match with Python 3.11
+
+
 
 
 __routes__
@@ -61,6 +58,14 @@ __Setup MongoDB__
 Setup and MongoDB account and connect it to your prefered cloud hosting service. For more indepth information see https://www.mongodb.com/free-cloud-database
 
 After completing the setup please find the MongoDB URI and insert it into the .env file.
+
+__Install Dependencies__
+With the .env file correctly setup you need to install the libraries and packages the web application relies on.
+Run the following command in your terminal to install everything with pip:
+```
+pip install -r requirements.txt
+```
+Note that the current version of tensorflow doesn't match with Python 3.11
 
 
 ```bash
