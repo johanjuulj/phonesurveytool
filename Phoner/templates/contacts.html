@@ -32,18 +32,18 @@
         </tr>
     </thead>
     <tbody>
-        {% for data in all_unsorted %}
+        {% for data in all_contacts %}
             <tr>
                 <td class="table__cell">
-                    <p class="table__notificationTitle">{{ data.question }}</p>
+                    <p class="table__notificationTitle">{{ data.name }}</p>
                   
                 </td>
-                <td class="table__cell">{{ data.label }}</td>
-                <td class="table__cell">{{ data.label }}</td>
-                <td class="table__cell">{{ data.label }}</td>
-                <td class="table__cell">{{ data.label }}</td>
-                <td class="table__cell">{{ data.label }}</td>
-                <td class="table__cell">{{ data.label }}</td>
+                <td class="table__cell">{{ data.phone }}</td>
+                <td class="table__cell">{{ data.gender }}</td>
+                <td class="table__cell">{{ data.age }}</td>
+                <td class="table__cell">{{ data.kids }}</td>
+                <td class="table__cell">{{ data.education }}</td>
+                <td class="table__cell">{{ data.village }}</td>
             </tr>
         {% endfor %}
     </tbody>

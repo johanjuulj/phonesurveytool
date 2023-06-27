@@ -49,10 +49,14 @@ class Question:
 @dataclass
 class Contact:
     _id: str
-    fname: str
-    lname:str
-    project:str
-    phone: str
+    name: str
+    phone:str
+    gender:str
+    age: int
+    kids:int
+    education: str  #should be category
+    village: str        #should be category
+    
 
 @dataclass
 class ScheduledMessage:

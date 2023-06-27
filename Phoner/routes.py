@@ -266,8 +266,11 @@ def delete_scheduled_messages():
 
 @pages.route("/contacts")
 def contacts():
-
-    return render_template("contacts.html")
+    contacts = current_app.db.Contacts.find({})
+    #sms_db_content = current_app.db.Questions.find({}) #remember to update questions to the proper database
+    all_contacts = [Contact(**x) for x in contacts]
+    
+    return render_template("contacts.html", all_contacts=all_contacts)
 
 
 @pages.route("/contacts_update/", methods=["GET", "POST"])
@@ -291,8 +294,11 @@ def contacts_update():
     # Access the values of each column
         name = row['Enumerator_name']
         phone = row['Enumerator_name']
-        project = row['Enumerator_name']
-        number_of_kids = row['Enumerator_name']
+        gender = row['Enumerator_name']
+        age = row['Enumerator_name']
+        kids = row['Enumerator_name']
+        education = row['Enumerator_name']
+        village = row['Enumerator_name']
 
         
     
@@ -300,8 +306,11 @@ def contacts_update():
         document = {
         'name': name,
         'phone': phone,
-        'project': project,
-        'number_of_kids': number_of_kids
+        'gender': gender,
+        'age': age,
+        'kids': kids,
+        'education': education,
+        'village': village
     }
         
     
@@ -314,7 +323,7 @@ def contacts_update():
     current_app.db.Contacts.insert_one(document)
     print(document)
     #all_sms = [SMS(**sms) for sms in sms_db_content]
-    return "hi"
+    return redirect(url_for(".contacts"))
 
 @pages.route("/contacts_get/", methods=["GET", "POST"])
 #require login
