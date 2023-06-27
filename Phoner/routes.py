@@ -14,6 +14,7 @@ import time
 import os
 from dotenv import load_dotenv
 from bson.objectid import ObjectId
+import pandas as pd
 
 load_dotenv()
 
@@ -263,23 +264,57 @@ def delete_scheduled_messages():
 
 ####### API Contact calls
 
+@pages.route("/contacts")
+def contacts():
+
+    return render_template("contacts.html")
+
+
 @pages.route("/contacts_update/", methods=["GET", "POST"])
 #require login
 def contacts_update():
     #INSERT METhOD tHAT CALLS DB HERE. 
-    #url = "https://app.buymore.co.ke/"
-    #project_owner = "4Life"
-    #password = "fakePassword"
-    #response = requests.get(url, project_owner, password)
-    #response.json()
+    TOKEN = 'fca5c203b64e9ebc661d0154fe430f5918d0f6a4' #account token: in kobo go to account->settings
+    KF_URL = 'kobo.humanitarianresponse.info' #or 'kf.kobotoolbox.org'
+    ASSET_UID = 'aBpYV2tnsJXVDVwbcLqAxg' #asset id of the project gotten from the url e.g. https://kobo.humanitarianresponse.info/#/forms/axXYMX67noGAR9i4HNNMUR/summary - TOOL specifc
+    QUERY = '{"start":{"$gt":"2022-10-10"}}' # query for filtering results  https://www.mongodb.com/docs/manual/reference/operator/query/#query-selectors
+    URL = f'https://{KF_URL}/api/v2/assets/{ASSET_UID}/data/?query={QUERY}&format=json' # use when using query
+    # URL = f'https://{KF_URL}/api/v2/assets/{ASSET_UID}/data/?format=json'
+    headers = {"Authorization": f'Token {TOKEN}'}
 
-    contacts = current_app.db.Contacts.find({})
+
+    response = requests.get(URL, headers=headers) #kobo API call
+    data = response.json()
+    df = pd.DataFrame(data['results'])
     
-    contact = Contact("4","Michael", "Christensen","Bidi Bidi", "+4542345741")
+    for index, row in df.iterrows():
+    # Access the values of each column
+        name = row['Enumerator_name']
+        phone = row['Enumerator_name']
+        project = row['Enumerator_name']
+        number_of_kids = row['Enumerator_name']
 
-    current_app.db.Contacts.insert_one(asdict(contact))
+        
+    
+    # Create a dictionary to represent the document
+        document = {
+        'name': name,
+        'phone': phone,
+        'project': project,
+        'number_of_kids': number_of_kids
+    }
+        
+    
+    
+
+    #contacts = current_app.db.Contacts.find({})
+    
+    #contact = Contact("4","Michael", "Christensen","Bidi Bidi", "+4542345741")
+
+    current_app.db.Contacts.insert_one(document)
+    print(document)
     #all_sms = [SMS(**sms) for sms in sms_db_content]
-    return contacts
+    return "hi"
 
 @pages.route("/contacts_get/", methods=["GET", "POST"])
 #require login
@@ -333,7 +368,7 @@ def dataroom():
         print(label)
     print(labels)
     print(data)
-    daysList = ["m","t","w","t","f","l","s"]
+    daysList = ["m","t","w","tSettings","f","l","s"]
     return render_template("dataroom.html", labels=labels, data=data)
 
 

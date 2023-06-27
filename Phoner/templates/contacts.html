@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block head_content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/chatbot.css') }}" />
+{% endblock %}
+
+{% block main_content %}
+
+<section class="body__chatbot">
+<h1 class="headline"> Phoner Chatbot</h1>
+
+
+<table class="table">
+    <colgroup>
+        <col style="width: 20%">
+        <col style="width: 15%">
+        <col style="width: 10%">
+        <col style="width: 10%">
+        <col style="width: 10%">
+        <col style="width: 15%">
+        <col style="width: 15%">
+    </colgroup>
+    <thead>
+        <tr class="table__header">
+            <th class="table__cell table__cell--header">Name</th>
+            <th class="table__cell table__cell--header">Phone</th>
+            <th class="table__cell table__cell--header">Gender</th>
+            <th class="table__cell table__cell--header">Age</th>
+            <th class="table__cell table__cell--header">Kids</th>
+            <th class="table__cell table__cell--header">Education</th>
+            <th class="table__cell table__cell--header">Village</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for data in all_unsorted %}
+            <tr>
+                <td class="table__cell">
+                    <p class="table__notificationTitle">{{ data.question }}</p>
+                  
+                </td>
+                <td class="table__cell">{{ data.label }}</td>
+                <td class="table__cell"><a href="{{ url_for('pages.approve_model',_id=data._id) }}" class="table__link">Approve</a></td>
+                <td class="table__cell"><a href="{{ url_for('pages.edit_model',_id=data._id) }}" class="table__link">Edit</a></td>
+
+            </tr>
+        {% endfor %}
+    </tbody>
+  
+<table width=100% height=100%>
+    <tr>
+        <td width=80%>Add data dashboard</td>
+        
+        
+        <td width=20%>Add settings box</td>
+    </tr></table>
+
+
+</section>
+    {% endblock %}
