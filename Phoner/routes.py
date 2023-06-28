@@ -292,13 +292,13 @@ def contacts_update():
     
     for index, row in df.iterrows():
     # Access the values of each column
-        name = row['Enumerator_name']
-        phone = row['Enumerator_name']
-        gender = row['Enumerator_name']
-        age = row['Enumerator_name']
-        kids = row['Enumerator_name']
-        education = row['Enumerator_name']
-        village = row['Enumerator_name']
+        name = row.get('Enumerator_name')
+        phone = row.get('Phone_number')
+        gender = row.get('Gender')
+        age = row.get('Age')
+        kids = row.get('Number_of_kids')
+        education = row.get('Education')
+        village = row.get('Village')
 
         
     

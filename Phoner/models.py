@@ -54,7 +54,7 @@ class Contact:
     gender:str
     age: int
     kids:int
-    education: str  #should be category
+    education: str  
     village: str        #should be category
     
 
