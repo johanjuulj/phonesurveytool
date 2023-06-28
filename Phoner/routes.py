@@ -279,10 +279,10 @@ def contacts_update():
     #INSERT METhOD tHAT CALLS DB HERE. 
     TOKEN = 'fca5c203b64e9ebc661d0154fe430f5918d0f6a4' #account token: in kobo go to account->settings
     KF_URL = 'kobo.humanitarianresponse.info' #or 'kf.kobotoolbox.org'
-    ASSET_UID = 'aBpYV2tnsJXVDVwbcLqAxg' #asset id of the project gotten from the url e.g. https://kobo.humanitarianresponse.info/#/forms/axXYMX67noGAR9i4HNNMUR/summary - TOOL specifc
+    ASSET_UID = 'afS4VYAKGa25JCqigdiCKv' #asset id of the project gotten from the url e.g. https://kobo.humanitarianresponse.info/#/forms/axXYMX67noGAR9i4HNNMUR/summary - TOOL specifc
     QUERY = '{"start":{"$gt":"2022-10-10"}}' # query for filtering results  https://www.mongodb.com/docs/manual/reference/operator/query/#query-selectors
-    URL = f'https://{KF_URL}/api/v2/assets/{ASSET_UID}/data/?query={QUERY}&format=json' # use when using query
-    # URL = f'https://{KF_URL}/api/v2/assets/{ASSET_UID}/data/?format=json'
+    #URL = f'https://{KF_URL}/api/v2/assets/{ASSET_UID}/data/?query={QUERY}&format=json' # use when using query
+    URL = f'https://{KF_URL}/api/v2/assets/{ASSET_UID}/data/?format=json'
     headers = {"Authorization": f'Token {TOKEN}'}
 
 
@@ -292,7 +292,7 @@ def contacts_update():
     
     for index, row in df.iterrows():
     # Access the values of each column
-        name = row.get('Enumerator_name')
+        name = row.get('End_users_first_name_and_last_name')
         phone = row.get('Phone_number')
         gender = row.get('Gender')
         age = row.get('Age')
