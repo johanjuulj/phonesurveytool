@@ -15,6 +15,7 @@ import os
 from dotenv import load_dotenv
 from bson.objectid import ObjectId
 import pandas as pd
+from datetime import datetime
 
 load_dotenv()
 
@@ -24,7 +25,7 @@ pages = Blueprint(
 )
 
 
-###Utilities
+###Utilities          
 
 @pages.cli.command()
 def scheduled():
@@ -32,7 +33,8 @@ def scheduled():
     scheduledMessages = current_app.db.ScheduledMessage.find()
     
     for message in scheduledMessages:
-        if message["date"] == message["date"]: #match date check same y m d format - is there a better way than cronjob to check?
+        scheduledDate = datetime.strptime(message["date"], "%Y-%m-%d").date()
+        if scheduledDate == datetime.now().date():
             
             query = {}
 
@@ -114,6 +116,7 @@ def index():
         title="Phoner"
        
     )
+
 
 
 
