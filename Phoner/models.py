@@ -61,8 +61,12 @@ class Contact:
 @dataclass
 class ScheduledMessage:
     _id:str
-    project: str
-    messageTitle: str
+    gender:str
+    age: int
+    kids:int
+    education: str  
+    village: str  
+    messageId: str
     date: datetime 
     nors: str
 

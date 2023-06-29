@@ -9,9 +9,9 @@ render_select_field %} {% extends "layout.html" %} {%- block head_content %}
 <h1>Schedule Surveys</h1>
 <form action="{{ url_for('pages.schedule') }}" method="POST">
   <label for="">Select a Survey:</label>
-  <select name="messageTitle" method="POST" action="/">
+  <select name="messageId" method="POST" action="/">
     {% for survey in surveys %}
-    <option value="{{survey.title}}" selected>{{survey.title}}</option>
+    <option value="{{survey._id}}" selected>{{survey.title}}</option>
     " {% endfor %}
   </select>
 

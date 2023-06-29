@@ -224,8 +224,12 @@ def schedule():
 
         sm = ScheduledMessage(
             _id=uuid.uuid4().hex,
-            project = request.form["project"],
-            messageTitle = request.form["messageTitle"],
+             age = request.form["age-group"],
+            gender = request.form["gender"],
+            kids = request.form["kids"],
+            education = request.form["education"],
+            village = request.form["village"],
+            messageId = request.form["messageId"],
             #time = request.form["time"],
             date = request.form["date"],
             nors = request.form["nors"],
