@@ -88,7 +88,7 @@ def send():
         opensurvey = OpenSurvey(
             contact=contact["phone"],
             questions=questionlist) 
-        print(contact["phone"],questionlist[0])  
+       
         send_message(contact["phone"],questionlist[0])
         current_app.db.OpenSurvey.insert_one(asdict(opensurvey))
  
