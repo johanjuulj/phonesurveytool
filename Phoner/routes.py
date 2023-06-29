@@ -312,18 +312,10 @@ def contacts_update():
         'education': education,
         'village': village
     }
+        #if loop checking whether phone exist
         current_app.db.Contacts.insert_one(document)
         
     
-    
-
-    #contacts = current_app.db.Contacts.find({})
-    
-    #contact = Contact("4","Michael", "Christensen","Bidi Bidi", "+4542345741")
-
-    
-   
-    #all_sms = [SMS(**sms) for sms in sms_db_content]
     return redirect(url_for(".contacts"))
 
 @pages.route("/contacts_get/", methods=["GET", "POST"])
