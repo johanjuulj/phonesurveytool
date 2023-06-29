@@ -293,12 +293,12 @@ def contacts_update():
     for index, row in df.iterrows():
     # Access the values of each column
         name = row.get('End_users_first_name_and_last_name')
-        phone = row.get('Phone_number')
+        phone = row.get('Phone_number_No_country_code_needed')
         gender = row.get('Gender')
         age = row.get('Age')
-        kids = row.get('Number_of_kids')
-        education = row.get('Education')
-        village = row.get('Village')
+        kids = row.get('How_many_children_un_ng_in_your_household')
+        education = row.get('What_is_the_highest_level_of_e ')
+        village = row.get('End_user_address_Ward')
 
         
     
@@ -312,6 +312,7 @@ def contacts_update():
         'education': education,
         'village': village
     }
+        current_app.db.Contacts.insert_one(document)
         
     
     
@@ -320,8 +321,8 @@ def contacts_update():
     
     #contact = Contact("4","Michael", "Christensen","Bidi Bidi", "+4542345741")
 
-    current_app.db.Contacts.insert_one(document)
-    print(document)
+    
+   
     #all_sms = [SMS(**sms) for sms in sms_db_content]
     return redirect(url_for(".contacts"))
 
