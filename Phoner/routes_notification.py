@@ -96,10 +96,10 @@ def notification_schedule():
     user = User(**user_data)
 
 
-    projects = current_app.db.Contacts.distinct("project")
+    villages = current_app.db.Contacts.distinct("village")
     
     all_notifications = current_app.db.Notifications.find({"_id": {"$in": user.notifications }})
-    return render_template("notification_schedule.html", notifications=all_notifications, projects=projects)
+    return render_template("notification_schedule.html", notifications=all_notifications, villages=villages)
 
 
 

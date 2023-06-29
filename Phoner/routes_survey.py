@@ -201,10 +201,10 @@ def schedule():
     user = User(**user_data)
 
 
-    projects = current_app.db.Contacts.distinct("project")
+    villages = current_app.db.Contacts.distinct("village")
     
     all_surveys = current_app.db.Surveys.find({"_id": {"$in": user.surveys }})
-    return render_template("survey_schedule.html", surveys=all_surveys, projects=projects)
+    return render_template("survey_schedule.html", surveys=all_surveys, villages=villages)
 
 
 
