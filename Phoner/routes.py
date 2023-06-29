@@ -33,13 +33,35 @@ def scheduled():
     
     for message in scheduledMessages:
         if message["date"] == message["date"]: #match date check same y m d format - is there a better way than cronjob to check?
-            listofnumbers = current_app.db.Contacts.find({}) #phone numbers
-            messageContent = current_app.db.Notifications.find_one({"title": message["messageTitle"]})
-            for number in listofnumbers:
-                results = send_message(number, messageContent["content"] )
+            
+            query = {}
+
+            
+            if message["age"]:
+                age_min, age_max = message["age"].split("-")
+                query["age"] = {"$gte": int(age_min), "$lte": int(age_max)}
+            
+            if message["gender"]:
+                query["gender"] = message["gender"]
+
+            if message["kids"]:
+                query["kids"] = message["kids"]
+
+            if message["education"]:
+                query["education"] = message["education"]
+
+            if message["village"]:
+                query["village"] = message["village"]
+
+            
+            contacts = current_app.db.Contacts.find(query) 
+                    
+           
+            notification = current_app.db.Notifications.find_one({"_id": message["messageId"]})
+            for number in contacts:
+                results = send_message(number, notification["content"] )
                 sentmessage = SentMessage(
             _id=uuid.uuid4().hex,
-            project=message["project"],
             nors="Notification",
             date=datetime.datetime.now(),
             response=results

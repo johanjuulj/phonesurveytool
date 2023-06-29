@@ -73,7 +73,6 @@ class ScheduledMessage:
 @dataclass
 class SentMessage:
     _id: str
-    project: str
     date: datetime
     response : object
     
