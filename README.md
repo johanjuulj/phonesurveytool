@@ -5,12 +5,13 @@ Is an open source project enabling organizations collect data on projects utiliz
 ## Roadmap
 
 The project was developed as a part of a project at DTU and has been customized for a couple of organizations needing it for implementations with various development projects. There is no current development ongoing on the phonesurveytool but in the future I might work on customization features such as
-* Account management
-* Messaging authority
-* Gateway customization (Twilio/Africa’sTalking and more)
-* Chatbot functionality - Adding simple chatbot funtionality for Q&A purposes to educate the user.
-* Proper unit test and integration test implementation
-For now several of these things are hardcoded.
+
+- Account management
+- Messaging authority
+- Gateway customization (Twilio/Africa’sTalking and more)
+- Chatbot functionality - Adding simple chatbot funtionality for Q&A purposes to educate the user.
+- Proper unit test and integration test implementation
+  For now several of these things are hardcoded.
 
 ## Documentation
 
@@ -18,7 +19,7 @@ The web app is built on Python Flask and utilizes a Mongodb backend. Some experi
 
 ### Structure
 
-__Setup__
+**Setup**
 
 The init file sets up the web application and loads all the configuartions and blueprints. If you are to add more pages/section this is where they should be loaded
 
@@ -30,43 +31,50 @@ You should create a .env file which contains the data needed to be loaded into t
 
 requirements.txt file contains all the dependencies that needs to be install prior to running the app.
 
-
-
-
-__routes__
+**routes**
 The main directory containts all the routes for the webapplication divided into "routes" for main/misc routes, notification routes and survey routes. These are the three main categories of routes throughout the application.
 
-__static folder__
+**static folder**
 The static folder contains all the CSS for the web application and the minimal amount of javascript code.
 
-__templates folder__
+**templates folder**
 The templates folder contiains all the "views"/pages displayed. Future work could entail making some of them more dynamic by adding some JS functionality.
 
 ## Deployment
+
 First steps to deploy is to ensure you have updated the .env file as explained above and exected the installation of dependencies through pip is described above
 To deploy this project run
 
-__Setup Twilio__
+**Setup Kobo**
+
+In your Kobo Collect account go to the security page and copy the token as shown below
+
+![alt text](https://github.com/johanjuulj/phonesurveytool/blob/main/Screenshot%20from%202023-05-30%2009-52-42.png)
+
+Copy that into the .env file under AUTH_KOBO_Token
+
+**Setup Twilio**
 First you need to create a Twilio account. For more information on account types check https://www.twilio.com/docs/messaging/build-your-account
 
 Or go straight to sign-up https://www.twilio.com/try-twilio
 
 In testing please go under "sandbox" and find the datapoints TWILIO_SID & AUTH_TOKEN these are to be inserted into the .env file prior to launching the web application.
 
-__Setup MongoDB__
+**Setup MongoDB**
 
 Setup and MongoDB account and connect it to your prefered cloud hosting service. For more indepth information see https://www.mongodb.com/free-cloud-database
 
 After completing the setup please find the MongoDB URI and insert it into the .env file.
 
-__Install Dependencies__
+**Install Dependencies**
 With the .env file correctly setup you need to install the libraries and packages the web application relies on.
 Run the following command in your terminal to install everything with pip:
+
 ```
 pip install -r requirements.txt
 ```
-Note that the current version of tensorflow doesn't match with Python 3.11
 
+Note that the current version of tensorflow doesn't match with Python 3.11
 
 ### Launch Test Environment
 
@@ -76,19 +84,8 @@ Note that the current version of tensorflow doesn't match with Python 3.11
 
 Your web application should now be working on your localhost
 
-
 ### Launch Production Environment
 
 First decide on a cloud hosting solution to launch the web-application on. I suggest using the same as you are using to host your database.
 
-
-
-
-
-
-
-
-
-
-
-Note: the chatbot functionality and corresponding folders/documents should be moved to another branch and should be ignorred for now. This includes data.pickle checkpoint model.tflearn+ and everything in the chatbot & model folders. 
+Note: the chatbot functionality and corresponding folders/documents should be moved to another branch and should be ignorred for now. This includes data.pickle checkpoint model.tflearn+ and everything in the chatbot & model folders.

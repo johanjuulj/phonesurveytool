@@ -3,3 +3,4 @@ export MONGO_URI="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 export TWILIO_SID='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 export AUTH_TOKEN='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 export AUTH_TOKEN_backup='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+export AUTH_KOBO_Token='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
