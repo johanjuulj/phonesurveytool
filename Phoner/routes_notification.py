@@ -32,15 +32,41 @@ def contacts_update():
 
 @notification.route("/send_notification",  methods=["GET", "POST"])
 def send_notification():
-    project = request.form["project"]
+    age = request.form["age-group"]
+    gender = request.form["gender"]
+    kids = request.form["kids"]
+    education = request.form["education"]
+    village = request.form["village"]
+   
+
+    query = {}
+    #if age:
+    #    query["age"] = age
+    if age:
+        age_min, age_max = age.split("-")
+        query["age"] = {"$gte": int(age_min), "$lte": int(age_max)}
+    
+    if gender:
+        query["gender"] = gender
+
+    if kids:
+        query["kids"] = kids
+
+    if education:
+        query["education"] = education
+
+    if village:
+        query["village"] = village
+
+    
+    contacts = current_app.db.Contacts.find(query) 
+
     messageID = request.form["notification"]
     message = current_app.db.Notifications.find_one({"_id":messageID})
   
 
-    contacts = current_app.db.Contacts.find({ "project": request.form["project"] }) #update queru to only take project specifc to minimise load {"project":request.form["project"] }
-    
     for contact in contacts:
-        
+        print(contact["phone"],message["content"])
         result = send_message(contact["phone"],message["content"])
         
     flash("Message sent!", "success")     
@@ -55,13 +81,13 @@ def notification_send():
     user = User(**user_data)
 
 
-    projects = current_app.db.Contacts.distinct("project")
+    villages = current_app.db.Contacts.distinct("village")
     
     all_notifications = current_app.db.Notifications.find({"_id": {"$in": user.notifications }})
 
     
     
-    return render_template("notification_send.html", notifications=all_notifications, projects=projects)
+    return render_template("notification_send.html", notifications=all_notifications, villages=villages)
 
 @notification.route("/notification/schedule/", methods=["GET", "POST"])
 #require login

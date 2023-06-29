@@ -53,15 +53,8 @@ render_select_field %} {% extends "layout.html" %} {%- block head_content %}
     <option value="none">None</option>
   </select>
 
-  <!--
-    gender:str
-    age: int
-    kids:int
-    education: str  
-    village: str  
-    -->
-  <label for="kids">Village:</label>
-  <select name="project" method="POST" action="/">
+  <label for="village">Village:</label>
+  <select name="village" method="POST" action="/">
     {% for village in villages %}
     <option name="village" value="{{village}}" selected>{{village}}</option>
     " {% endfor %}
@@ -71,10 +64,3 @@ render_select_field %} {% extends "layout.html" %} {%- block head_content %}
 </form>
 
 {% endblock %}
-
-<!--
-<form method="POST" action="/">
-    {{ form.csrf_token }}
-    {{ form.name.label }} {{ form.name(size=20) }}
-    <input type="submit" value="Go">
-</form>-->
