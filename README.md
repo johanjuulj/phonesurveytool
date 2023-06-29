@@ -49,7 +49,7 @@ To deploy this project run
 
 In your Kobo Collect account go to the security page and copy the token as shown below
 
-![alt text](https://github.com/johanjuulj/phonesurveytool/blob/main/Screenshot%20from%202023-05-30%2009-52-42.png)
+![alt text](https://github.com/johanjuulj/phonesurveytool/blob/main/Kobo_Setup.png)
 
 Copy that into the .env file under AUTH_KOBO_Token
 
