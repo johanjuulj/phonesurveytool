@@ -40,8 +40,7 @@ def send_notification():
    
 
     query = {}
-    #if age:
-    #    query["age"] = age
+ 
     if age:
         age_min, age_max = age.split("-")
         query["age"] = {"$gte": int(age_min), "$lte": int(age_max)}

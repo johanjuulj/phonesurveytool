@@ -41,7 +41,33 @@ def center():
 
 @survey.route("/send", methods=["GET", "POST"])
 def send():
-    #project = request.form["project"]
+    age = request.form["age-group"]
+    gender = request.form["gender"]
+    kids = request.form["kids"]
+    education = request.form["education"]
+    village = request.form["village"]
+   
+
+    query = {}
+ 
+    if age:
+        age_min, age_max = age.split("-")
+        query["age"] = {"$gte": int(age_min), "$lte": int(age_max)}
+    
+    if gender:
+        query["gender"] = gender
+
+    if kids:
+        query["kids"] = kids
+
+    if education:
+        query["education"] = education
+
+    if village:
+        query["village"] = village
+
+    
+    contacts = current_app.db.Contacts.find(query) 
     survey_id = request.form["survey"]
     
     
@@ -53,7 +79,7 @@ def send():
 
         questionlist.append(question["content"])
 
-    contacts = current_app.db.Contacts.find({ "project": request.form["project"] }) 
+   
     
 
     for contact in contacts:
