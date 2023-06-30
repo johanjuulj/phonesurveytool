@@ -5,7 +5,7 @@ import uuid
 import datetime
 from dataclasses import asdict
 from Phoner.models import Notification, User,Survey, Question, Contact,ScheduledMessage, SentMessage, OpenSurvey
-from Phoner.forms import ExtendedNotificationForm, NotificationForm, RegisterForm, LoginForm, SurveyForm, QuestionForm
+from Phoner.forms import ExtendedNotificationForm, NotificationForm, RegisterForm, LoginForm, SurveyForm, QuestionForm, UpdateContacts
 from Phoner.model.bot import chat
 from twilio.rest import Client
 from twilio.twiml.messaging_response import MessagingResponse
@@ -312,47 +312,59 @@ def contacts_delete():
 @pages.route("/contacts_update/", methods=["GET", "POST"])
 #require login
 def contacts_update():
-    #INSERT METhOD tHAT CALLS DB HERE. 
-    TOKEN = os.environ.get("AUTH_KOBO_Token")
-    KF_URL = 'kobo.humanitarianresponse.info' #or 'kf.kobotoolbox.org'
-    ASSET_UID = 'afS4VYAKGa25JCqigdiCKv' #asset id of the project gotten from the url e.g. https://kobo.humanitarianresponse.info/#/forms/axXYMX67noGAR9i4HNNMUR/summary - TOOL specifc
-    #QUERY = '{"start":{"$gt":"2022-10-10"}}' # query for filtering results  https://www.mongodb.com/docs/manual/reference/operator/query/#query-selectors
-    #URL = f'https://{KF_URL}/api/v2/assets/{ASSET_UID}/data/?query={QUERY}&format=json' # use when using query
-    URL = f'https://{KF_URL}/api/v2/assets/{ASSET_UID}/data/?format=json'
-    headers = {"Authorization": f'Token {TOKEN}'}
+    form = UpdateContacts()
+    
+    if request.method == 'POST':
+         if form.validate_on_submit():
+            print(form.ASSET_UID.data,form.update_type.data,form.note.data)
+            if form.ASSET_UID.data:
+                ASSET_UID = form.ASSET_UID.data
+
+                TOKEN = os.environ.get("AUTH_KOBO_Token")
+                KF_URL = 'kobo.humanitarianresponse.info' #or 'kf.kobotoolbox.org'
+                #ASSET_UID = 'afS4VYAKGa25JCqigdiCKv' #asset id of the project gotten from the url e.g. https://kobo.humanitarianresponse.info/#/forms/axXYMX67noGAR9i4HNNMUR/summary - TOOL specifc
+                #QUERY = '{"start":{"$gt":"2022-10-10"}}' # query for filtering results  https://www.mongodb.com/docs/manual/reference/operator/query/#query-selectors
+                #URL = f'https://{KF_URL}/api/v2/assets/{ASSET_UID}/data/?query={QUERY}&format=json' # use when using query
+                URL = f'https://{KF_URL}/api/v2/assets/{ASSET_UID}/data/?format=json'
+                headers = {"Authorization": f'Token {TOKEN}'}
 
 
-    response = requests.get(URL, headers=headers) #kobo API call
-    data = response.json()
-    df = pd.DataFrame(data['results'])
-    
-    for index, row in df.iterrows():
-    # Access the values of each column
-        name = row.get('End_users_first_name_and_last_name')
-        phone = row.get('Phone_number_No_country_code_needed')
-        gender = row.get('Gender')
-        age = row.get('Age')
-        kids = row.get('How_many_children_un_ng_in_your_household')
-        education = row.get('What_is_the_highest_level_of_e')
-        village = row.get('End_user_address_Ward')
+                response = requests.get(URL, headers=headers) #kobo API call
+                data = response.json()
+                df = pd.DataFrame(data['results'])
 
-        
+                #if statement that replaces/or adds all the
+                
+                for index, row in df.iterrows():
+                # Access the values of each column
+                    name = row.get('End_users_first_name_and_last_name')
+                    phone = row.get('Phone_number_No_country_code_needed')
+                    gender = row.get('Gender')
+                    age = row.get('Age')
+                    kids = row.get('How_many_children_un_ng_in_your_household')
+                    education = row.get('What_is_the_highest_level_of_e')
+                    village = row.get('End_user_address_Ward')
+
+                    
+                
+                # Create a dictionary to represent the document
+                    document = {
+                    'name': name,
+                    'phone': phone,
+                    'gender': gender,
+                    'age': age,
+                    'kids': kids,
+                    'education': education,
+                    'village': village
+                }
+                    #if loop checking whether phone exist
+                    current_app.db.Contacts.insert_one(document)
+                    
+            
+            return redirect(url_for(".contacts"))
     
-    # Create a dictionary to represent the document
-        document = {
-        'name': name,
-        'phone': phone,
-        'gender': gender,
-        'age': age,
-        'kids': kids,
-        'education': education,
-        'village': village
-    }
-        #if loop checking whether phone exist
-        current_app.db.Contacts.insert_one(document)
-        
     
-    return redirect(url_for(".contacts"))
+    return render_template("contacts_update_form.html", form=form)
 
 @pages.route("/contacts_get/", methods=["GET", "POST"])
 #require login

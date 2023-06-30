@@ -7,6 +7,12 @@ class NotificationForm(FlaskForm):
     content = TextAreaField("Message Content", validators=[InputRequired()])
     submit = SubmitField("Add Notification")
 
+class UpdateContacts(FlaskForm):
+    ASSET_UID = StringField("Asset UID for Survey", validators=[InputRequired()])
+    update_type = SelectField("OverwriteAdd", choices=["Overwrite (based on phonenumber)", "Add All"])
+    note = TextAreaField("Note for Update", validators=[InputRequired()])
+    submit = SubmitField("Update Contacts")
+
 # class NotificationSendForm(FlaskForm):
 #     notificationTitle =StringField("Notification Title", validators=[InputRequired()])
 #     recipientProject = StringField("Recipient Project", validators=[InputRequired()])
