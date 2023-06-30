@@ -302,6 +302,13 @@ def contacts():
     return render_template("contacts.html", all_contacts=all_contacts)
 
 
+@pages.route("/contacts_delete/", methods=["GET", "POST"])
+#require login
+def contacts_delete():
+    #delete
+    current_app.db.Contacts.delete_many({})
+    return redirect(url_for(".contacts"))
+
 @pages.route("/contacts_update/", methods=["GET", "POST"])
 #require login
 def contacts_update():

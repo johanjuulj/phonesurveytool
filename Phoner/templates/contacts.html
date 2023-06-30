@@ -1,21 +1,22 @@
 {% extends "layout.html" %}
 
 {% block head_content %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/chatbot.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/sms.css') }}" />
 {% endblock %}
 
 {% block main_content %}
 
-<section class="body__chatbot">
-<h1 class="headline"> Phoner Chatbot</h1>
+<section class="content">
+    
+    <h1 class="headline"> Contacts</h1>
 
 <section class="control">
     <a href="{{ url_for('pages.contacts_update') }}" class="button button--control">
         <span>Update Contacts</span>
     </a>
-   <!--<a href="{{ url_for('survey.schedule') }}" class="button button--control">
-        <span>Schedule Surveys</span>
-    </a>--> 
+   <a href="{{ url_for('pages.contacts_delete') }}" class="button button--control">
+        <span>Delete Contacts</span>
+    </a>
     
     </section>
 

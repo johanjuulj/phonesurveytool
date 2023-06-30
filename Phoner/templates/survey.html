@@ -1,116 +1,123 @@
-{% extends "layout.html" %}
-
-{% block head_content %}
+{% extends "layout.html" %} {% block head_content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/sms.css') }}" />
-{% endblock %}
-
-{% block main_content %}
+{% endblock %} {% block main_content %}
 
 <section class="body__chatbot">
-    <h1 class="headline"> Phoner Survey and Question Platform</h1>
+  <h1 class="headline">Phoner Survey and Question Platform</h1>
 
-    <section class="control">
-        <a href="{{ url_for('survey.survey_send') }}" class="button button--control">
-            <span>Send out Survey</span>
+  <section class="control">
+    <a
+      href="{{ url_for('survey.survey_send') }}"
+      class="button button--control"
+    >
+      <span>Send out Survey</span>
+    </a>
+    <a href="{{ url_for('survey.schedule') }}" class="button button--control">
+      <span>Schedule Surveys</span>
+    </a>
+  </section>
+
+  <table width="100%" height="100%">
+    <tr>
+      <td width="50%">
+        <h2>Survey's</h2>
+        {% if survey_data %}
+
+        <table class="table">
+          <colgroup>
+            <col style="width: 20%" />
+            <col style="width: 65%" />
+            <col style="width: 15%" />
+          </colgroup>
+          <thead>
+            <tr class="table__header">
+              <th class="table__cell table__cell--header">Title</th>
+              <th class="table__cell table__cell--header">Content</th>
+              <th class="table__cell table__cell--header"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for survey in survey_data %}
+            <tr>
+              <td class="table__cell">
+                <p class="table__notificationTitle">{{ survey.title }}</p>
+              </td>
+              <td class="table__cell">{{ survey.content }}</td>
+              <td class="table__cell">
+                <a
+                  href="{{ url_for('survey.survey_details',_id=survey._id) }}"
+                  class="table__link"
+                  >View</a
+                >
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+        <p class="table__empty">
+          You haven't added any survey's yet.
+          <a href="{{ url_for('survey.add') }}" class="link">Add one!</a>
+        </p>
+        {% endif %}
+
+        <a href="{{ url_for('survey.add') }}" class="button button--add1">
+          <span>+</span>
         </a>
-        <a href="{{ url_for('survey.schedule') }}" class="button button--control">
-            <span>Schedule Surveys</span>
+      </td>
+
+      <td width="50%">
+        <h2>Question's</h2>
+        {% if question_data %}
+
+        <table class="table">
+          <colgroup>
+            <col style="width: 20%" />
+            <col style="width: 65%" />
+            <col style="width: 15%" />
+          </colgroup>
+          <thead>
+            <tr class="table__header">
+              <th class="table__cell table__cell--header">Title</th>
+              <th class="table__cell table__cell--header">Content</th>
+              <th class="table__cell table__cell--header"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for question in question_data %}
+            <tr>
+              <td class="table__cell">
+                <p class="table__notificationTitle">{{ question.title }}</p>
+              </td>
+              <td class="table__cell">{{ question.content }}</td>
+              <td class="table__cell">
+                <a
+                  href="{{ url_for('survey.question_details',_id=question._id) }}"
+                  class="table__link"
+                  >View</a
+                >
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+        <p class="table__empty">
+          You haven't added any question's yet.
+          <a href="{{ url_for('survey.question_add') }}" class="link"
+            >Add one!</a
+          >
+        </p>
+        {% endif %}
+
+        <a
+          href="{{ url_for('survey.question_create') }}"
+          class="button button--add"
+        >
+          <span>+</span>
         </a>
-        
-        </section>
-
-
-    <table width=100% height=100%>
-        <tr>
-            <td width=50%>
-                <h2>Survey's</h2>
-                {% if survey_data %}
-
-                <table class="table">
-                    <colgroup>
-                        <col style="width: 20%">
-                        <col style="width: 65%">
-                        <col style="width: 15%">
-                    </colgroup>
-                    <thead>
-                        <tr class="table__header">
-                            <th class="table__cell table__cell--header">Title</th>
-                            <th class="table__cell table__cell--header">Content</th>
-                            <th class="table__cell table__cell--header"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for survey in survey_data %}
-                        <tr>
-                            <td class="table__cell">
-                                <p class="table__notificationTitle">{{ survey.title }}</p>
-
-                            </td>
-                            <td class="table__cell">{{ survey.content }}</td>
-                            <td class="table__cell"><a href="{{ url_for('survey.survey_details',_id=survey._id) }}" class="table__link">View</a></td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                    
-                </table>
-                {% else %}
-                <p class="table__empty">You haven't added any survey's yet. <a href="{{ url_for('survey.add') }}"
-                        class="link">Add one!</a></p>
-                {% endif %}
-
-                
-                <a href="{{ url_for('survey.add') }}" class="button button--add1">
-                    <span>+</span>
-                </a>
-
-            </td>
-
-            <td width=50%>
-                <h2> Question's</h2>
-                {% if question_data %}
-
-                <table class="table">
-                    <colgroup>
-                        <col style="width: 20%">
-                        <col style="width: 65%">
-                        <col style="width: 15%">
-                    </colgroup>
-                    <thead>
-                        <tr class="table__header">
-                            <th class="table__cell table__cell--header">Title</th>
-                            <th class="table__cell table__cell--header">Content</th>
-                            <th class="table__cell table__cell--header"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for question in question_data %}
-                        <tr>
-                            <td class="table__cell">
-                                <p class="table__notificationTitle">{{ question.title }}</p>
-
-                            </td>
-                            <td class="table__cell">{{ question.content }}</td>
-                            <td class="table__cell"><a href="{{ url_for('survey.question_details',_id=question._id) }}" class="table__link">View</a></td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-                {% else %}
-                <p class="table__empty">You haven't added any question's yet. <a
-                        href="{{ url_for('survey.question_add') }}" class="link">Add one!</a></p>
-                {% endif %}
-
-                <a href="{{ url_for('survey.question_create') }}" class="button button--add">
-                    <span>+</span>
-                </a>
-
-
-
-
-            </td>
-        </tr>
-    </table>
-
-
+      </td>
+    </tr>
+  </table>
 </section>
 {% endblock %}
