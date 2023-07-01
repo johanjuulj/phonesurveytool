@@ -344,22 +344,56 @@ def contacts_update():
                     kids = row.get('How_many_children_un_ng_in_your_household')
                     education = row.get('What_is_the_highest_level_of_e')
                     village = row.get('End_user_address_Ward')
+                    phone_number = row["Phone_number_No_country_code_needed"]
 
+                    existing_contact = current_app.db.Contacts.find_one({"phone": phone_number})
+                  
+                    if form.update_type.data == "Overwrite (based on phonenumber)":
+                        
+                       # Create the filter to find the existing contact by phone number
+                        filter_query = {"phone": phone}
+
+                            # Create the update document with the new contact data
+                        update_data = {
+        "$set": {
+            "name": row.get('End_users_first_name_and_last_name'),
+            "phone": phone_number,
+            "gender": row.get('Gender'),
+            "age": row.get('Age'),
+            "kids": row.get('How_many_children_un_ng_in_your_household'),
+            "education": row.get('What_is_the_highest_level_of_e'),
+            "village": row.get('End_user_address_Ward')
+        }
+    }
+
+                            # Update the contact in the database, or insert it as a new contact if it doesn't exist
+                        current_app.db.Contacts.update_one(filter_query, update_data, upsert=True)
+                        print("contact overwritten")
                     
-                
-                # Create a dictionary to represent the document
-                    document = {
-                    'name': name,
-                    'phone': phone,
-                    'gender': gender,
-                    'age': age,
-                    'kids': kids,
-                    'education': education,
-                    'village': village
-                }
-                    #if loop checking whether phone exist
-                    current_app.db.Contacts.insert_one(document)
+                    else:
+                        #add all data
+                           
+                        
                     
+
+                        
+                    
+                    # Create a dictionary to represent the document
+                        document = {
+                        'name': name,
+                        'phone': phone,
+                        'gender': gender,
+                        'age': age,
+                        'kids': kids,
+                        'education': education,
+                        'village': village
+                    }
+                        #if loop checking whether phone exist
+                        current_app.db.Contacts.insert_one(document)
+                        print("contact created")
+                    
+                    
+                        
             
             return redirect(url_for(".contacts"))
     
