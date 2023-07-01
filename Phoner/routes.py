@@ -455,30 +455,8 @@ def dataroom():
 
 
 
-########## Chatbot
-@pages.route("/chatbot", methods=["GET", "POST"])
-def chatbot():
-    all_unsorted = current_app.db.BotResponseUnSorted.find()
 
-    return render_template(
-        "chatbot.html", all_unsorted=all_unsorted
-    )
 
-@pages.route("/approve_model/<string:_id>")
-def approve_model(_id:str):
-    objInstance = ObjectId(_id)
-    response = current_app.db.BotResponseUnSorted.find_one( objInstance)
-   
-    current_app.db.BotResponseSorted.insert_one(response)
-    current_app.db.BotResponseUnSorted.delete_one({"_id": objInstance})
-    return redirect(url_for(".chatbot"))
-
-@pages.route("/edit_model/<string:_id>")
-def edit_model(_id:str):
-    objInstance = ObjectId(_id)
-    response = current_app.db.BotResponseUnSorted.find_one( objInstance)
-    
-    return "placeholder for " + response["question"]
 
 #####
 @pages.route("/placeholder", methods=["GET", "POST"])

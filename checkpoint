@@ -1,0 +1,2 @@
+model_checkpoint_path: "/home/johan/Documents/Phoner/model.tflearn"
+all_model_checkpoint_paths: "/home/johan/Documents/Phoner/model.tflearn"
