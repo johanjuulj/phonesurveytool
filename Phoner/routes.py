@@ -6,7 +6,7 @@ import uuid
 from dataclasses import asdict
 from Phoner.models import Notification, User,Survey, Question, Contact,ScheduledMessage, SentMessage, OpenSurvey
 from Phoner.forms import ExtendedNotificationForm, NotificationForm, RegisterForm, LoginForm, SurveyForm, QuestionForm, UpdateContacts
-from Phoner.model.bot import chat
+
 from twilio.rest import Client
 from twilio.twiml.messaging_response import MessagingResponse
 import requests
@@ -18,6 +18,8 @@ import pandas as pd
 from datetime import datetime, timedelta
 
 load_dotenv()
+
+
 
 from passlib.hash import pbkdf2_sha256
 pages = Blueprint(
@@ -217,10 +219,7 @@ def survey_recieve():
         else:
             send_message(survey["contact"],survey["questions"][responseNumber])
             print("message sent")
-    else:
-        response = chat(incoming_msg)
-        current_app.db.BotResponseUnSorted.insert_one({"question":incoming_msg,"label":response[1]})
-        send_message(number, response[0])
+    
         
 
 
