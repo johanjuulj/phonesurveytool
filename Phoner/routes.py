@@ -2,7 +2,7 @@ from crypt import methods
 from flask import Blueprint, current_app, render_template, session, redirect, request, url_for, flash
 import functools
 import uuid
-import datetime
+
 from dataclasses import asdict
 from Phoner.models import Notification, User,Survey, Question, Contact,ScheduledMessage, SentMessage, OpenSurvey
 from Phoner.forms import ExtendedNotificationForm, NotificationForm, RegisterForm, LoginForm, SurveyForm, QuestionForm, UpdateContacts
@@ -15,7 +15,7 @@ import os
 from dotenv import load_dotenv
 from bson.objectid import ObjectId
 import pandas as pd
-from datetime import datetime
+from datetime import datetime, timedelta
 
 load_dotenv()
 
@@ -410,10 +410,6 @@ def contacts_get():
     return all_contacts
 
 
-## pull new contacts
-## merge contacts
-## display contacts
-
 
 
 ####### Dataroom
@@ -423,10 +419,10 @@ def dataroom():
     sentList = [13,12,24,17,45,30]
     sentmessages = current_app.db.SentMessages.find({})
     results = {}
-    current_time = datetime.datetime.now()
+    current_time = datetime.now()
     for i in range(7):
   # Calculate the date of the current day
-        date = current_time - datetime.timedelta(days=i)
+        date = current_time - timedelta(days=i)
     
         results[date.date()] = 0
         
