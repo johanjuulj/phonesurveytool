@@ -8,8 +8,8 @@ import uuid
 import datetime
 from dataclasses import asdict
 from Phoner.models import Notification, User,Survey, Question, Contact,ScheduledMessage, SentMessage, OpenSurvey
-from Phoner.forms import ExtendedNotificationForm, NotificationForm, RegisterForm, LoginForm, SurveyForm, QuestionForm
-from Phoner.model.bot import chat
+from Phoner.forms import ExtendedNotificationForm, NotificationForm, RegisterForm, LoginForm, SurveyForm, QuestionForm, SendForm
+
 from twilio.rest import Client
 from twilio.twiml.messaging_response import MessagingResponse
 import requests
@@ -32,7 +32,8 @@ def contacts_update():
 
 @notification.route("/send_notification",  methods=["GET", "POST"])
 def send_notification():
-    age = request.form["age-group"]
+    print(request.form["age"])
+    age = request.form["age"]
     gender = request.form["gender"]
     kids = request.form["kids"]
     education = request.form["education"]
@@ -41,31 +42,34 @@ def send_notification():
 
     query = {}
  
-    if age:
-        age_min, age_max = age.split("-")
-        query["age"] = {"$gte": int(age_min), "$lte": int(age_max)}
+    if age and age not in ["none", "nan"]:
+        if isinstance(age, int):
+            age_min, age_max = age.split("-")
+            query["age"] = {"$gte": int(age_min), "$lte": int(age_max)}
+        
     
-    if gender:
+    if gender and gender != "none":
         query["gender"] = gender
 
-    if kids:
+    if kids and kids != "none":
         query["kids"] = kids
 
-    if education:
+    if education and education != "none":
         query["education"] = education
 
-    if village:
+    if village and village not in ["none", "nan"]:
         query["village"] = village
-
+   
     
     contacts = current_app.db.Contacts.find(query) 
+    
+    messageTitle = request.form["message"]
+    message = current_app.db.Notifications.find_one({"title":messageTitle})
 
-    messageID = request.form["notification"]
-    message = current_app.db.Notifications.find_one({"_id":messageID})
-  
+
 
     for contact in contacts:
-        print(contact["phone"],message["content"])
+        #print(contact["phone"],message["content"])
         result = send_message(contact["phone"],message["content"])
         
     flash("Message sent!", "success")     
@@ -84,9 +88,11 @@ def notification_send():
     
     all_notifications = current_app.db.Notifications.find({"_id": {"$in": user.notifications }})
 
+    form = SendForm(all_notifications, villages)
+
     
     
-    return render_template("notification_send.html", notifications=all_notifications, villages=villages)
+    return render_template("notification_send.html", notifications=all_notifications, villages=villages, form=form)
 
 @notification.route("/notification/schedule/", methods=["GET", "POST"])
 #require login
