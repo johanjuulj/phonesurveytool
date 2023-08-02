@@ -78,6 +78,9 @@ Note that the current version of tensorflow doesn't match with Python 3.11
 
 ### Launch Test Environment
 
+**Twilio Test**
+If you are running your test environment on localhost be mindful that Twilio won't be able to reach you unless you have a static IP. A great short term fix for this is to use Ngrok https://ngrok.com/download
+It temporarily opens a port and passes the package to your computer. Be mindful of the security concerns associated when doing this.
 ```
   flask run
 ```
