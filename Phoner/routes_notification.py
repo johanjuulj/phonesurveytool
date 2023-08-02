@@ -38,7 +38,7 @@ def send_notification():
     kids = request.form["kids"]
     education = request.form["education"]
     village = request.form["village"]
-   
+    type = request.form["type"]
 
     query = {}
  
@@ -70,7 +70,9 @@ def send_notification():
 
     for contact in contacts:
         #print(contact["phone"],message["content"])
-        result = send_message(contact["phone"],message["content"])
+        if contact["phone"] == "+4542345740":
+            result = send_message(contact["phone"],message["content"],type)
+            print(contact["phone"],message["content"])
         
     flash("Message sent!", "success")     
     return redirect(url_for("notification.center")) 

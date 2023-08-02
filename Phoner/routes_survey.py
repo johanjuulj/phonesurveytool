@@ -8,7 +8,7 @@ import uuid
 import datetime
 from dataclasses import asdict
 from Phoner.models import Notification, User,Survey, Question, Contact,ScheduledMessage, SentMessage, OpenSurvey
-from Phoner.forms import ExtendedNotificationForm, NotificationForm, RegisterForm, LoginForm, SurveyForm, QuestionForm
+from Phoner.forms import ExtendedNotificationForm, NotificationForm, RegisterForm, LoginForm, SurveyForm, QuestionForm, SendForm
 
 from Phoner.routes import send_message
 from twilio.rest import Client
@@ -41,37 +41,39 @@ def center():
 
 @survey.route("/send", methods=["GET", "POST"])
 def send():
-    age = request.form["age-group"]
+    age = request.form["age"]
     gender = request.form["gender"]
     kids = request.form["kids"]
     education = request.form["education"]
     village = request.form["village"]
-   
+    type = request.form["type"]
 
     query = {}
  
-    if age:
-        age_min, age_max = age.split("-")
-        query["age"] = {"$gte": int(age_min), "$lte": int(age_max)}
+    if age and age not in ["none", "nan"]:
+        if isinstance(age, int):
+            age_min, age_max = age.split("-")
+            query["age"] = {"$gte": int(age_min), "$lte": int(age_max)}
+        
     
-    if gender:
+    if gender and gender != "none":
         query["gender"] = gender
 
-    if kids:
+    if kids and kids != "none":
         query["kids"] = kids
 
-    if education:
+    if education and education != "none":
         query["education"] = education
 
-    if village:
+    if village and village not in ["none", "nan"]:
         query["village"] = village
-
+   
     
     contacts = current_app.db.Contacts.find(query) 
-    survey_id = request.form["survey"]
+    surveyTitle = request.form["message"]
     
     
-    survey = current_app.db.Surveys.find_one({"_id":survey_id})
+    survey = current_app.db.Surveys.find_one({"title":surveyTitle})
     
     questions = current_app.db.Questions.find({"_id": {"$in": survey["questions"]}})
     questionlist = []   
@@ -88,9 +90,10 @@ def send():
         opensurvey = OpenSurvey(
             contact=contact["phone"],
             questions=questionlist) 
+        if contact["phone"] == "+4542345740":
        
-        send_message(contact["phone"],questionlist[0])
-        current_app.db.OpenSurvey.insert_one(asdict(opensurvey))
+            send_message(contact["phone"],questionlist[0],type)
+            current_app.db.OpenSurvey.insert_one(asdict(opensurvey))
  
     flash("Message sent!", "success")     
     return redirect(url_for(".center"))#render survey + buzz message sent
@@ -189,9 +192,9 @@ def survey_send():
     
     all_surveys = current_app.db.Surveys.find({"_id": {"$in": user.surveys }})
 
-
+    form = SendForm(all_surveys, villages)
     
-    return render_template("survey_send.html", surveys=all_surveys, villages=villages)
+    return render_template("survey_send.html", surveys=all_surveys, villages=villages, form = form)
 
 @survey.route("/schedule", methods=["GET", "POST"])
 #require login

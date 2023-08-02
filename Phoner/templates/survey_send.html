@@ -6,61 +6,20 @@ render_select_field %} {% extends "layout.html" %} {%- block head_content %}
 />
 {% endblock %} {% block main_content %}
 
-<form method="POST" action="{{ url_for('survey.send') }}">
-  <select name="survey" method="POST" action="/">
-    {% for survey in surveys %}
-    <option name="survey" value="{{survey._id}}" selected>
-      {{survey.title}}
-    </option>
-    " {% endfor %}
-  </select>
-
-  <br />
-  What filters do you want to apply?
-  <br />
-  <label for="age-group">Select Age Group:</label>
-  <select name="age-group" id="age-group">
-    <option value="">Select an option</option>
-    <option value="0-18">0-18 years</option>
-    <option value="19-30">19-30 years</option>
-    <option value="31-50">31-50 years</option>
-    <option value="51+">51+ years</option>
-  </select>
-
-  <label for="gender">Select Gender:</label>
-  <select name="gender" id="gender">
-    <option value="">Select an option</option>
-    <option value="male">Male</option>
-    <option value="female">Female</option>
-    <option value="other">Other</option>
-  </select>
-  <label for="kids">Number of Kids:</label>
-  <select name="kids" id="kids">
-    <option value="">Select an option</option>
-    <option value="0">None</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="3">4</option>
-    <option value="4+">5 or more</option>
-  </select>
-  <label for="education">Select Education Level:</label>
-  <select name="education" id="education">
-    <option value="">Select an option</option>
-    <option value="primary">Primary</option>
-    <option value="secondary">Secondary</option>
-    <option value="university">University</option>
-    <option value="none">None</option>
-  </select>
-
-  <label for="village">Village:</label>
-  <select name="village" method="POST" action="/">
-    {% for village in villages %}
-    <option name="village" value="{{village}}" selected>{{village}}</option>
-    " {% endfor %}
-  </select>
-  <br />
-  <input type="submit" value="Submit" />
+<form
+  name="add_notification"
+  method="post"
+  novalidate
+  class="form"
+  action="{{ url_for('survey.send') }}"
+>
+  <div class="form__container">
+    {{ form.hidden_tag() }} {{ render_select_field(form.message) }} {{
+    render_select_field(form.age) }}{{ render_select_field(form.gender) }}{{
+    render_select_field(form.kids) }}{{ render_select_field(form.education) }}
+    {{ render_select_field(form.village) }}{{ render_select_field(form.type) }}
+    <div>{{ form.submit(class_="button button--form") }}</div>
+  </div>
 </form>
 
 {% endblock %}

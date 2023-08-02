@@ -63,7 +63,7 @@ def scheduled():
            
             notification = current_app.db.Notifications.find_one({"_id": message["messageId"]})
             for number in contacts:
-                results = send_message(number, notification["content"] )
+                results = send_message(number, notification["content"],"whatsapp" )
                 sentmessage = SentMessage(
             _id=uuid.uuid4().hex,
             nors="Notification",
@@ -74,26 +74,26 @@ def scheduled():
                 current_app.db.ScheduledMessage.delete_one({"_id": message._id})
             
 
-def send_message(number, _message):
+def send_message(number, _message,type):
     account_sid = os.environ.get("TWILIO_SID")
     auth_token = os.environ.get("AUTH_TOKEN") 
     client = Client(account_sid, auth_token)
 
     #set a state/user variable for which platform to use whatsapp or sms
-    platform = "whatsapp"
+    platform = type.lower()
     message = client.messages.create( 
                               from_=f'{platform}:+14155238886',  
                               body=f'{_message}',      
                               to=f'{platform}:{number}' 
                           ) 
-    sentmessage = SentMessage(
-            _id=uuid.uuid4().hex,
-            project=number,
-            date=datetime.datetime.now(),
-            response=message.sid #store more meaningfull input 
-        )
+    #sentmessage = SentMessage(
+    #        _id=uuid.uuid4().hex,
+    #        project=number,
+    #        date=datetime.now(),
+    #        response=message.sid #store more meaningfull input 
+    #    )
    
-    current_app.db.SentMessages.insert_one(asdict(sentmessage)) 
+    #current_app.db.SentMessages.insert_one(asdict(sentmessage)) 
     
     return message.sid
 
@@ -188,6 +188,7 @@ def logout():
 
 @pages.route("/survey_recieve", methods=['GET','POST'])
 def survey_recieve(): 
+    print("its a hit")
     #process input and filter
     number = request.values.get("From", "")
     number = number.lstrip("whatsapp:")
@@ -212,12 +213,13 @@ def survey_recieve():
         responseNumber = len(survey["responses"])
       
         if len(survey["questions"]) == len(survey["responses"]):
-            send_message(survey["contact"],"Thank you for completing the survey. We have Credited your account with 25 shillings")
+            
+            send_message(survey["contact"],"Thank you for completing the survey. We have Credited your account with 25 shillings","whatsapp")
             current_app.db.CompletedSurvey.insert_one(asdict(opensurvey))
             current_app.db.OpenSurvey.delete_one({"contact": number})
             
         else:
-            send_message(survey["contact"],survey["questions"][responseNumber])
+            send_message(survey["contact"],survey["questions"][responseNumber],"whatsapp")
             print("message sent")
     
         

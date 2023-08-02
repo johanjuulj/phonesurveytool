@@ -22,8 +22,9 @@ class SendForm(FlaskForm):
     age = SelectField('Filter by age group:    ', choices=[('none', 'None'),('0-18', '0-18'), ('19-30', '19-30'), ('31-50', '31-50'), ('51+', '51+')],default='none')
     gender = SelectField('Filter by gender', choices=[('none', 'None'), ('female', 'Female'), ('male', 'Male'), ('other', 'Other')], default='none')
     kids = SelectField('Filter by number of kids', choices=[('none', 'None'), ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5+', '5+')], default='none')
-    education = SelectField('Filter by educatio', choices=[('none', 'None'), ('primary', 'Primary'), ('secondary', 'Secondary'), ('university', 'University')], default='none')
+    education = SelectField('Filter by education', choices=[('none', 'None'), ('primary', 'Primary'), ('secondary', 'Secondary'), ('university', 'University')], default='none')
     village = SelectField('Filter by village', default='none')
+    type = SelectField('Message type:    ', choices=[('whatsapp', 'Whatsapp'),('sms', 'SMS')],default='Whatsapp')
     submit = SubmitField("Send message")
 
     def __init__(self, messages=None, villages=None, *args, **kwargs):

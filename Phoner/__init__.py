@@ -11,6 +11,7 @@ from Phoner.routes import pages
 load_dotenv()
 def create_app():
     app = Flask(__name__)
+    app.debug =True
     app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
     client = MongoClient(os.environ.get("MONGO_URI"))
     app.db = client.Phoner
